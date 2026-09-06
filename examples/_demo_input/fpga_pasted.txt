@@ -1,0 +1,46 @@
+# FPGA逻辑分析仪——逻辑派FPGA-G1开发板（FoLogic）
+作者：TheFool（GitHub: yuzhe-TheFool）；立创开源平台：grweizzz
+许可证：GPL 3.0（硬件 CC BY-SA 4.0）
+
+## 项目简介
+全网首款软硬件全开源FPGA逻辑分析仪。16通道200MHz采样，2Gb深度存储，硬件级多模式触发，阈值可调，PulseView百种协议解码。从HDL到上位机全面开放，填补开源高性能逻辑分析仪的空白。
+
+## 硬件特性
+- 16 通道逻辑采集
+- 最大采样率（Buffer 模式）200 MHz（16通道，100MHz 主频 + IDDR 双沿采样）
+- 最大采样率（Stream 模式）100 MHz(2ch)/50 MHz(5ch)/20 MHz(8ch)/10 MHz(16ch)
+- 存储深度最大 2 Gb（板载 DDR3 SDRAM）
+- 主控 FPGA：高云 GW2A-18（逻辑派 FPGA-G1 核心板，含 DDR3）
+- USB 控制器：Cypress CY7C68013A（FX2LP）
+- 通信接口：USB 2.0 High-Speed（480 Mbps），GPIF 并行总线
+- 输入电压范围 0~5V，V2 增强版通过 DAC5311 调节阈值，兼容 1.8V/2.5V/3.3V/5V 逻辑电平
+- 输入保护：TLV3502 比较器整形 + 迟滞回差 + 33Ω 串联 + ESD + SN74LVC16245A 电平转换
+- 触发模式：上升沿/下降沿/双边沿、高/低电平、掩码触发；预触发深度可调 0%~90%
+- 协议解析：基于 PulseView，支持 100+ 种协议解码器，可 Python 自定义
+- PCB 层数：4 层
+- 外壳：专用 3D 打印外壳（壁厚 2.0mm，M2 连接上下壳，M3 固定 PCB）
+- 双板架构：底板（CY7C68013A）+ 核心板（逻辑派 FPGA-G1，集成 GW2A-18 + DDR3）
+
+## 软件/固件
+FPGA HDL 源码：https://github.com/yuzhe-TheFool/logic_gowin_pro
+FX2LP 固件源码（Keil C51）：https://github.com/yuzhe-TheFool/FoLogic-fw-keil-master
+上位机软件（PulseView 分支）：https://github.com/yuzhe-TheFool/pulseview
+参考项目（非本仓库）：https://github.com/DreamSourceLab/DSLogic-hdl
+协议解码：基于 Sigrok 解码器库，100+ 种（I2C/SPI/UART/CAN/LIN/JTAG/I2S 等），支持 Python 自定义解码器
+固件烧录：FPGA 用 Gowin IDE 烧录 logic_gwin_pro.fs 至 SPI FLASH；FX2 用 CyConsole 下载 FoLogic.iic
+
+## 复刻步骤
+1. 核心板获取：购买逻辑派 FPGA-G1 核心板或自行绘制
+2. 底板制作：打样/焊接底板 PCB（4层，含 CY7C68013A、AMS1117 稳压、16通道接口、V2 前端比较器等）
+3. 采集线制作：RG178 同轴线、杜邦母端子、热缩管、四通道接口小板，焊接 16 通道（每通道信号+地线）
+4. 外壳制作：3D 打印底/上壳，M3 螺母固定 PCB，M2 螺丝合盖
+5. 烧录 FPGA 固件（logic_v2.rar）到 SPI FLASH
+6. 烧录 FX2 固件（FoLogic-fw-keil-master.rar）到 CY7C68013A
+7. 下载 PulseView（fologic_v2），用 Zadig 装 WinUSB 驱动
+8. 打开 PulseView 选择设备，设阈值/触发，开始采样
+
+## 开源许可证
+硬件：CC BY-SA 4.0
+FPGA Verilog：GPL-3.0
+FX2 固件：GPL-3.0
+上位机软件：GPL-3.0
