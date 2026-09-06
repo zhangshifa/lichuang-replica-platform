@@ -1,0 +1,15 @@
+# 依赖与缓存
+__pycache__/
+*.pyc
+node_modules/
+
+# 本地环境
+.venv/
+.env
+
+# 工作区元数据（不随仓库发布）
+.workbuddy/
+
+# 系统
+.DS_Store
+Thumbs.db
