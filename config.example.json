@@ -1,0 +1,20 @@
+{
+  "platform": "oshwhub",
+  "default_no_clone": false,
+  "clone_attempts": [
+    "regular",
+    "bypass_mirror",
+    "port_443"
+  ],
+  "github": {
+    "api": "https://api.github.com",
+    "default_branch": "main",
+    "private": false,
+    "topics": ["oshwhub", "open-source-hardware", "replication"]
+  },
+  "exclude_dirs": [".git", "node_modules", "__pycache__", ".workbuddy"],
+  "example": {
+    "url": "https://oshwhub.com/flyn/helixlink",
+    "name": "HelixLink"
+  }
+}
