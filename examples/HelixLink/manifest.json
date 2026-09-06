@@ -1,0 +1,54 @@
+{
+  "platform": "oshwhub",
+  "owner": "flyn",
+  "project": "helixlink",
+  "url": "https://oshwhub.com/flyn/helixlink",
+  "title": "HelixLink 多功能调试器",
+  "author": "flyn",
+  "summary": "HelixLink 是一款开源的多功能调试器，集成多种调试与通信接口，硬件原理图/PCB 完全开源，并配套开源固件与桌面上位机。项目以 CC BY-NC-SA 4.0 协议发布，方便个人复刻与二次开发。",
+  "license": "CC BY-NC-SA 4.0",
+  "source_repos": [
+    {
+      "url": "https://gitee.com/helixlink/helixlink",
+      "desc": "HelixLink 主仓库：固件 + 桌面上位机源码",
+      "priority": "primary"
+    }
+  ],
+  "vendor_deps": [
+    {
+      "url": "https://github.com/nanopb/nanopb",
+      "desc": "nanopb：轻量 protobuf 序列化，用于固件-上位机通信协议"
+    },
+    {
+      "url": "https://github.com/MaJerle/lwrb",
+      "desc": "lwrb：轻量环形缓冲区，用于串口/USB 数据缓冲"
+    },
+    {
+      "url": "https://github.com/cherry-embedded/CherryUSB",
+      "desc": "CherryUSB：嵌入式 USB 协议栈，固件 USB 通信基础"
+    }
+  ],
+  "hardware": {
+    "features": [
+      "SWD / JTAG 调试接口",
+      "UART 串口透传",
+      "USB 虚拟串口 / CDC",
+      "信号隔离保护",
+      "可扩展的调试/测量通道"
+    ],
+    "core_mcu_hint": "带 USB 外设的 ARM Cortex-M 系列 MCU（具体型号以立创工程为准）",
+    "schematic_format": "嘉立创 EDA（立创 EDA）工程",
+    "pcb_open": true
+  },
+  "bom_note": "完整 BOM（含精确型号/位号/封装）见立创开源项目页的 BOM 附件，可在立创 EDA 一键导出。下方 01_hardware/BOM.md 给出分类清单与选型要点。",
+  "replication_steps": [
+    "在立创开源项目页用立创 EDA 一键克隆工程，导出 PCB 并下单（PCB 打样 + SMT 贴片可选）",
+    "按 BOM 在立创商城/得捷/贸泽采购分立器件与结构件",
+    "回流焊/手工焊接装配，注意极性器件与封装一致",
+    "克隆固件源码（见 02_software），安装工具链并编译、烧录",
+    "运行桌面上位机，连接设备联调并验证各调试通道"
+  ],
+  "extra": {
+    "note": "本 manifest 由「立创开源智能复刻平台」从立创开源页面提取整理；具体器件型号与完整 BOM 以立创工程导出为准。"
+  }
+}
